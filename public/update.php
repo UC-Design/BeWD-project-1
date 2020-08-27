@@ -11,7 +11,7 @@ try {
 	// FIRST: Connect to the database
 	$connection = new PDO($dsn, $username, $password, $options);
 	// SECOND: Create the SQL
-	$sql = "SELECT * FROM works";
+	$sql = "SELECT * FROM works WHERE userid =" . $_SESSION['id'];
 	// THIRD: Prepare the SQL
 	$statement = $connection->prepare($sql);
 	$statement->execute();
@@ -32,7 +32,7 @@ foreach($result as $row) {
 	?>
 	<div class="result">
 		<?php
-		if( $row["imagelocation"] !== null ){
+		if( $row["imagelocation"] !== NULL && $row["imagelocation"] !== "" ){
 			echo "<img src='uploads/" . $row["imagelocation"] . "' alt='" . $row['worktitle'] ." by " . $row['artistname'] . "'>";
 		}
 		else

@@ -1,0 +1,21 @@
+Notes:
+
+To Do:
+
+1. Give feedback when registration is successful.
+
+2. SOLVED - Imagelocations are not being added to db on remote server. SOLUTION - variable passed to SQL created by basename() rather than direct form input.
+
+3. SOLVED - Index.php doesn't redirect to welcome.php - SOLUTION remove html comment before redirect.
+
+4. Dates are not being added to db on remote server.
+
+5. Format all query results into <div> and <p> as per read.php.
+
+6. Add image upload to edit page, delete old image at the same time.
+
+7. Move image upload error to form in create.php.
+
+8. Fix welcome page.
+
+9.

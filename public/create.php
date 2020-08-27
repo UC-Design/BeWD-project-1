@@ -78,6 +78,7 @@ if (isset($_POST['submit'])) {
 			// FIRST: Connect to the database
 			$connection = new PDO($dsn, $username, $password, $options);
 			
+			$userid = $_SESSION['id'];
 			$artistname = $_POST['artistname'];
 			$worktitle = $_POST['worktitle'];
 			$workdate = $_POST['workdate'];
@@ -85,18 +86,19 @@ if (isset($_POST['submit'])) {
 			
 			// SECOND: Get the contents of the form and store it in an array
 			$new_work = array(
+				"userid" => $userid,
 				"artistname" => $artistname,
 				"worktitle" => $worktitle,
 				"workdate" => $workdate,
 				"worktype" => $worktype,
-				"imagelocation" => basename( $_FILES["imagelocation"]["name"]),
+				"imagelocation" => basename( $_FILES["imagelocation"]["name"])
 			);
 
 			// THIRD: Turn the array into a SQL statement
 			$sql = "
 					INSERT 
-					INTO works (artistname, worktitle, workdate, worktype, imagelocation) 
-					VALUES (:artistname, :worktitle, :workdate, :worktype, :imagelocation)
+					INTO works (userid, artistname, worktitle, workdate, worktype, imagelocation) 
+					VALUES (:userid, :artistname, :worktitle, :workdate, :worktype, :imagelocation)
 			";
 
 			// FOURTH: Now write the SQL to the database

@@ -56,6 +56,7 @@ header{
 	background: var(--tint);
 	margin-bottom: 20px;
 	padding: 20px 0;
+	border-bottom: 0.5em solid black;
 }
 header a{
 	text-decoration: none;
@@ -84,11 +85,11 @@ p.success{
 	padding: 0.5em;
 	border: 1px solid black;
 	text-decoration: none;
-	transition: all ease 0.2s;
+	transition: background ease 0.2s;
 }
 .btn:hover{
+	color: black;
 	background: var(--key);
-	color: #fff;
 }
 
 form.input{

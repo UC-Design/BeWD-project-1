@@ -3,7 +3,6 @@
 	require "../config.php";
     require "common.php";
 
-
     // run when submit button is clicked
     if (isset($_POST['submit'])) {
         try {
@@ -16,7 +15,7 @@
               "worktitle"  => $_POST['worktitle'],
               "workdate"   => $_POST['workdate'],
               "worktype"   => $_POST['worktype'],
-              "date"   => $_POST['date'],
+              "date"	   => $_POST['date'],
             ];
             
             // create SQL statement
@@ -51,15 +50,17 @@
             
             // set if as variable
             $id = $_GET['id'];
+			$uid = $_SESSION['id'];
             
             //select statement to get the right data
-            $sql = "SELECT * FROM works WHERE id = :id";
+            $sql = "SELECT * FROM works WHERE id = :id AND userid = :uid";
             
             // prepare the connection
             $statement = $connection->prepare($sql);
             
             //bind the id to the PDO id
             $statement->bindValue(':id', $id);
+			$statement->bindValue(':uid', $uid);
             
             // now execute the statement
             $statement->execute();

@@ -65,7 +65,7 @@ foreach($result as $row) {
 	?>
 	<div class="result">
 			<?php
-			if( $row["imagelocation"] !== null ){
+			if( $row["imagelocation"] !== NULL && $row["imagelocation"] !== "" ){
 				echo "<img src='uploads/" . $row["imagelocation"] . "' alt='" . $row['worktitle'] ." by " . $row['artistname'] . "'>";
 			}
 			else

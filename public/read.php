@@ -4,6 +4,7 @@ require "user-check.php";
 ?>
 
 <?php
+session_start();
 // this code will only execute after the submit or search buttons are clicked
 if (isset($_POST['search']) or isset($_POST['submit'])) {
 	
@@ -17,25 +18,29 @@ if (isset($_POST['search']) or isset($_POST['submit'])) {
 	try {
 		// FIRST: Connect to the database
 		$connection = new PDO($dsn, $username, $password, $options);
+		
 		// SECOND: Create the SQL
 		if(isset($_POST['search'])){
-			//may need: escape($_POST['q'])
+			$uid = $_SESSION['id'];
 			$query = escape($_POST['q']);
 			$sql = "SELECT DISTINCT * FROM works WHERE 
-			artistname LIKE '%" . $query . "%'
-				or 
+			userid = $uid
+				AND
+			(artistname LIKE '%" . $query . "%'
+				OR 
 			worktitle LIKE '%" . $query . "%'
-				or
+				OR
 			workdate LIKE '%" . $query . "%'
-				or
-			worktype LIKE '%" . $query . "%'
+				OR
+			worktype LIKE '%" . $query . "%')
 				";
 		}else{
-			$sql = "SELECT * FROM works";
+			$sql = "SELECT * FROM works WHERE userid =" . $_SESSION['id'];
 		}
 		// THIRD: Prepare the SQL
 		$statement = $connection->prepare($sql);
 		$statement->execute();
+		
 		// FOURTH: Put it into a $result object that we can access in the page
 		$result = $statement->fetchAll();
 	} catch(PDOException $error) {
@@ -60,7 +65,7 @@ if (isset($_POST['search']) or isset($_POST['submit'])) {
 		?>
 		<div class="result">
 			<?php
-			if( $row["imagelocation"] !== null ){
+			if( $row["imagelocation"] !== NULL && $row["imagelocation"] !== "" ){
 				echo "<img src='uploads/" . $row["imagelocation"] . "' alt='" . $row['worktitle'] ." by " . $row['artistname'] . "'>";
 			}
 			else
@@ -68,6 +73,7 @@ if (isset($_POST['search']) or isset($_POST['submit'])) {
 				echo "<p class='small'>No image available.</p>";
 			}
 			?>
+			<p>USER:<?php echo $row["userid"]; ?></p>
 			<p>ID:<?php echo $row["id"]; ?></p>
 			<p>Artist Name: <?php echo $row['artistname']; ?></p>
 			<p>Work Title: <?php echo $row['worktitle']; ?></p>
