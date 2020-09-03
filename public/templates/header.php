@@ -5,6 +5,8 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="assets/css/style.css">
 <!--	<link rel="stylesheet" href="assets/css/bootstrap.css">-->
+<!--	<link rel="stylesheet" href="assets/css/normalize.css">-->
+<!--	<link rel="stylesheet" href="assets/css/skeleton.css">-->
 </head>
 <body>
 	<header>

@@ -58,7 +58,7 @@ if (isset($_POST['search']) or isset($_POST['submit'])) {
 	//if there are some results
 	if ($result && $statement->rowCount() > 0) { 
 ?>
-		<h2>Results</h2>
+		<h2>Result</h2>
 		<?php
 		// Loop through each result in the array
 		foreach($result as $row) {
@@ -73,7 +73,6 @@ if (isset($_POST['search']) or isset($_POST['submit'])) {
 				echo "<p class='small'>No image available.</p>";
 			}
 			?>
-			<p>USER:<?php echo $row["userid"]; ?></p>
 			<p>ID:<?php echo $row["id"]; ?></p>
 			<p>Artist Name: <?php echo $row['artistname']; ?></p>
 			<p>Work Title: <?php echo $row['worktitle']; ?></p>

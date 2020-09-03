@@ -12,7 +12,7 @@
 }
 html{}
 
-/* TYPE */
+/* ======= type ======= */
 body{
 	font-size: 18px;
 	font-family: 'Roboto', 'Poppins', sans-serif;
@@ -32,7 +32,6 @@ h2{
 b{
 	font-weight: 700;
 }
-/**/
 
 a,
 a:visited{
@@ -44,12 +43,12 @@ a:hover{
 a.red{
 	color:#f00;
 }
+/* ======= END type ======= */
 
+
+/* ======= element styles ======= */
 h2{
 	margin-bottom: 20px;
-}
-
-p{
 }
 
 header{
@@ -76,6 +75,13 @@ header .wrapper{
 	width: 960px;
 	margin: 0 auto;
 }
+
+footer{
+	min-height: 50px;
+/*	background-color: var(--shade);*/
+}
+/* ======= END element styles ======= */
+
 
 p.success{
 	padding: 20px 0;
