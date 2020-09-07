@@ -8,6 +8,8 @@
 		
 		if( !empty($_FILES["imagelocation"]["name"]) ){
 			include "img-upload.php";
+		}else {
+			$imgid = $_POST["imagelocation"];
 		}
 		
         try {
@@ -73,7 +75,7 @@
             
             // attach the sql statement to the new work variable so we can access it in the form
             $work = $statement->fetch(PDO::FETCH_ASSOC);
-            
+
         } catch(PDOExcpetion $error) {
             echo $sql . "<br>" . $error->getMessage();
         }
@@ -94,6 +96,8 @@
 
 <h2>Edit a work</h2>
 <h3>ID: <?php echo escape($work['id']); ?></h3>
+<form class="input" method="post" enctype="multipart/form-data">
+	<input readonly type="hidden" name="imagelocation" id="imagelocation" value="<?php echo escape($work['imagelocation']); ?>" >
 <?php
 			if( $work["imagelocation"] !== NULL && $work["imagelocation"] !== "" ){
 				echo "<img src='uploads/" . $work["imagelocation"] . "' alt='" . $work['worktitle'] ." by " . $work['artistname'] . "'>";
@@ -103,7 +107,7 @@
 				echo "<p class='small'>No image available.</p>";
 			}
 			?>
-<form class="input" method="post" enctype="multipart/form-data">
+
     <div class="form-group">
 <!--    	<label for="id">ID</label>-->
 <!-- Make the ID hidden and readonly so the user doesn't edit the wrong item in the DB -->
